@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home/facturas/nueva', 'PagesController@nueva');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
