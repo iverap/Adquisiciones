@@ -15,6 +15,11 @@
                     @endif
 
                     You are logged in!
+                        <br>
+                        <form action="{{ route('admin.mantenedorProveedor')}}" method="get">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">MANTENEDOR PROVEEDOR</button>
+                      </form>
+                        <br>
                 </div>
             </div>
         </div>

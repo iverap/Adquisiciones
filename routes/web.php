@@ -20,4 +20,7 @@ Route::get('/home/facturas/nueva', 'PagesController@nueva');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//ADMINISTRADOR
+Route::get('/mantenedorProveedor', 'Auth\MantenedorProveedorController@showRegistrationForm')->name('admin.mantenedorProveedor');
+Route::post('/mantenedorProveedor', 'Auth\MantenedorProveedorController@register')->name('admin.mantenedorProveedor.submit');
 
