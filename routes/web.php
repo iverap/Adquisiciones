@@ -20,7 +20,14 @@ Route::get('/home/facturas/nueva', 'PagesController@nueva');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/eliminadoSatisfactoriamente', 'HomeController@eliminado')->name('eliminadoSatisfactoriamente');
 //ADMINISTRADOR
-Route::get('/mantenedorProveedor', 'Auth\MantenedorProveedorController@showRegistrationForm')->name('admin.mantenedorProveedor');
-Route::post('/mantenedorProveedor', 'Auth\MantenedorProveedorController@register')->name('admin.mantenedorProveedor.submit');
+Route::get('/mantenedorProveedor', 'Auth\MantenedorProveedorController@showListarProveedores')->name('admin.mantenedorProveedor');
+Route::get('/crearProveedor', 'Auth\MantenedorProveedorController@showRegistrationForm')->name('crearProveedor');
+Route::post('/crearProveedor', 'Auth\MantenedorProveedorController@register')->name('crearProveedor.submit');
+
+Route::get('/editarProveedor/{id}', 'Auth\MantenedorProveedorController@editarProveedor')->name('editarProveedor');
+Route::post('/editarProveedor/{id}', 'Auth\MantenedorProveedorController@submitEditarProveedor')->name('editarProveedor.submit');
+
+Route::get('/mantenedorProveedor/{id}', 'Auth\MantenedorProveedorController@eliminarProveedor')->name('eliminarProveedor');
 

@@ -16,18 +16,25 @@ class MantenedorProveedorController extends Controller
 
     }
 
+    public function showListarProveedores()
+    {
+        $proveedores = Proveedor::all();
+
+        return view('proveedor.proveedor-listar')->with([
+            'proveedores' => $proveedores,
+        ]);
+    }
     public function showRegistrationForm()
     {
         return view('auth.proveedor-register');
     }
-
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
 
        $admin = $this->create($request->all());
 
-        return redirect(route('home'));
+        return redirect(route('admin.mantenedorProveedor'));
     }
     /**
      * Get a validator for an incoming registration request.
@@ -56,4 +63,29 @@ class MantenedorProveedorController extends Controller
     {
         return Auth::guard('admin');
     }
+
+    public function eliminarProveedor($id)
+    {
+        $proveedores = Proveedor::find($id);
+        $proveedores->delete();
+        return view('eliminado-satisf');
+    }
+    public function editarProveedor($id)
+    {
+        $proveedor= Proveedor::find($id);
+        return view('proveedor.proveedor-editar')->with([
+            'proveedor' => $proveedor,
+        ]);
+    }
+
+    public function submitEditarProveedor(Request $request, $id)
+    {
+        $proveedor= Proveedor::find($id);
+        $proveedor->nombre_proveedor=$request->nombre_proveedor;
+        $proveedor->rut_proveedor=$request->rut_proveedor;
+        $proveedor->save();
+
+        return redirect('home');
+    }
+
 }

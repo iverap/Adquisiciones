@@ -12,7 +12,7 @@
                 <div class="card-header">{{ __('Registrar Proveedor') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.mantenedorProveedor.submit') }}">
+                    <form method="POST" action="{{ route('crearProveedor.submit') }}">
                         @csrf
 
                         <div class="form-group row">
