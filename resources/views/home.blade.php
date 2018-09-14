@@ -16,8 +16,8 @@
 
                     You are logged in!
                         <br>
-                        <form action="{{ route('admin.mantenedorProveedor')}}" method="get">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">MANTENEDOR PROVEEDOR</button>
+                        <form action="{{ route('admin.mantenedorCategorias')}}" method="get">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">MANTENEDOR Categorias</button>
                       </form>
                         <br>
                 </div>
