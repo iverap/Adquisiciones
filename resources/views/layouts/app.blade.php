@@ -86,11 +86,11 @@
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Estadisticas
+                                    Proveedores
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Place Holder</a>
-                                    <a class="dropdown-item" href="#">Place Holder</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Proveedores/create">Nuevo Proveedor</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Proveedores/">Listado</a>
                                 </div>
                             </li>
 

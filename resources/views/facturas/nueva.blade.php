@@ -47,6 +47,12 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-3">
+                    <input id="datepicker"/>
+
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-default">Submit</button>
                 </div>
