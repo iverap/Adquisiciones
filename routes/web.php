@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home/facturas/nueva', 'PagesController@nueva');
+Route::resource('Proveedores', 'ProveedoresController');
 
 Auth::routes();
 
