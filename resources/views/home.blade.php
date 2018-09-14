@@ -20,6 +20,11 @@
                             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">MANTENEDOR Categorias</button>
                       </form>
                         <br>
+                        <br>
+                        <form action="{{ route('admin.mantenedorTipoDoc')}}" method="get">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">MANTENEDOR Categorias</button>
+                        </form>
+                        <br>
                 </div>
             </div>
         </div>

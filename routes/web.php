@@ -41,5 +41,14 @@ Route::get('/editarCategorias/{id}', 'Auth\MantenedorCategoriasController@editar
 Route::post('/editarCategorias/{id}', 'Auth\MantenedorCategoriasController@submitEditarCategorias')->name('editarCategorias.submit');
 
 Route::get('/mantenedorCategorias/{id}', 'Auth\MantenedorCategoriasController@eliminarCategorias')->name('eliminarCategorias');
+//TIPODOC
+Route::get('/mantenedortipodoc', 'Auth\MantenedorTipoDocController@showListarTipoDocumento')->name('admin.mantenedorTipoDoc');
+Route::get('/creartipodoc', 'Auth\MantenedorTipoDocController@showRegistrationForm')->name('crearTipoDoc');
+Route::post('/creartipodoc', 'Auth\MantenedorTipoDocController@register')->name('creartipodoc.submit');
+
+Route::get('/editartipodoc/{id_tipodoc}', 'Auth\MantenedorTipoDocController@editarTipoDoc')->name('editartipodoc');
+Route::post('/editartipodoc/{id_tipodoc}', 'Auth\MantenedorTipoDocController@submitEditarTipoDoc')->name('editartipodoc.submit');
+
+Route::get('/mantenedortipodoc/{id_tipodoc}', 'Auth\MantenedorTipoDocController@eliminarTipoDoc')->name('eliminartipodoc');
 
 
