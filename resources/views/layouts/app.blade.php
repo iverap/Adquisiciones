@@ -66,11 +66,11 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Facturas
+                                    Documentos
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Adquisiciones/public/home/facturas/nueva">Nueva Factura</a>
-                                    <a class="dropdown-item" href="#">Buscar Factura</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Documento/create">Nuevo Documento</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Documento/">Buscar Documento</a>
                                 </div>
                             </li>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Documento;
 use Illuminate\Http\Request;
 use App\Proveedores;
 
@@ -28,6 +29,7 @@ class ProveedoresController extends Controller
     public function create()
     {
         //
+
         return view('proveedores.create');
     }
 
