@@ -64,6 +64,7 @@
                                     </form>
                                 </div>
                             </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Documentos
@@ -71,6 +72,16 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/Adquisiciones/public/Documento/create">Nuevo Documento</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/Documento/">Buscar Documento</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Mantenedores
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/Adquisiciones/public/mantenedorProveedor">Proveedor</a>
+                                    <a class="dropdown-item" href="#">Buscar Factura</a>
                                 </div>
                             </li>
 
