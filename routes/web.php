@@ -21,7 +21,7 @@ Route::resource('Documento', 'DocumentoController');
 Route::resource('Categoria', 'CategoriaController');
 Route::resource('TipoDocumento','TipoDocController');
 Route::resource('Compra', 'CompraController');
-
+Route::resource('MedioPago', 'MedioPagoController');
 
 Auth::routes();
 
