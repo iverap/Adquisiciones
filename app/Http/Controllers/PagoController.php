@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PagosController extends Controller
+class PagoController extends Controller
 {
     /**
      * Display a listing of the resource.

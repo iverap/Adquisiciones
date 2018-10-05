@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Documento;
 use App\Proveedores;
+use File;
 class DocumentoController extends Controller
 {
     /**
@@ -15,13 +16,12 @@ class DocumentoController extends Controller
 
     public function index()
     {
-        //$documentos = Documento::with('Proveedores')->toSql();
         $documentos = Documento::with('prov')->get();
         //$documentos = Documento::all();
-        //$documentos = Documento::all();
-        //dd($documentos);
-        //$poveedornombre = Proveedores::find($documentos->proveedor);
-        //$documentos = Proveedores::where('proveedor',$documentos->id_documento);
+        //$documentos = Documento::with(array('prov' => function($query) {
+            //$query->withTrashed();
+        //}))->get();
+
         return view('documentos.index', compact('documentos'));
     }
 
@@ -82,9 +82,12 @@ class DocumentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($documento_original)
     {
-        //
+        $url = url('storage/imagenes_facturas/'.$documento_original);
+        //$url = storage_path('app\public').'/imagenes_facturas/'.$documento_original;
+        //$file_path = $documento_original;
+        return view('documentos.show', compact('url'));
     }
 
     /**
@@ -93,9 +96,13 @@ class DocumentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_documento)
     {
-        //
+        //$documento = Documento::find($id_documento);
+        $documento = Documento::with('prov')->find($id_documento);
+        //$documento = Documento::with('prov')->find($id_documento);
+        $proveedores = Proveedores::all();
+        return view('documentos.edit', compact('documento','proveedores'));
     }
 
     /**
@@ -105,9 +112,38 @@ class DocumentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_documento)
     {
         //
+        $request->validate([
+            'numero_documento'=>'required|integer',
+            'proveedor' => 'required',
+            'fecha_documento'=>'required|date',
+            'fecha_vencimiento'=>'required|date',
+            'tipo'=>'required',
+            'monto_documento'=>'required|integer',
+            'documento_original'=>'image|nullable|max:1999'
+        ]);
+
+        $documento = Documento::find($id_documento);
+        $documento->numero_documento = $request->get('numero_documento');
+        $documento->proveedor = $request->get('proveedor');
+        $documento->fecha_documento = $request->get('fecha_documento');
+        $documento->fecha_vencimiento = $request->get('fecha_vencimiento');
+        $documento->tipo = $request->get('tipo');
+        $documento->monto_documento = $request->get('monto_documento');
+
+        if ($request->hasFile('documento_original')){
+            $file_path = storage_path('app\public').'/imagenes_facturas/'.$documento->documento_original;
+            if(File::exists($file_path)) File::delete($file_path);
+            $extension = $request->file('documento_original')->getClientOriginalExtension();
+            $fileName = $request->get('proveedor').'_'.$request->get('numero_documento').'_'.time().'.'.$extension;
+            $request->file('documento_original')->storeAs('public/imagenes_facturas', $fileName);
+            $documento->documento_original = $fileName;
+        }
+        $documento->save();
+
+        return redirect('/Documento')->with('success', 'Documento actualizado');
     }
 
     /**
@@ -116,8 +152,11 @@ class DocumentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_documento)
     {
-        //
+        $documento = Documento::find($id_documento);
+        $documento->delete();
+
+        return redirect('/Documento')->with('success', 'Documento Anulado');
     }
 }

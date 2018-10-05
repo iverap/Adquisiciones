@@ -31,7 +31,7 @@
                     <label for="quantity">Rut Proveedor:</label>
                     <input type="text" class="form-control" name="rut_proveedor" value={{ $proveedor->rut_proveedor }} />
                 </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Editar</button>
             </form>
         </div>
     </div>

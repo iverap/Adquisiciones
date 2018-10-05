@@ -39,9 +39,10 @@
                             <form action="{{ route('Documento.destroy', $documento->id_documento)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Eliminar</button>
+                                <button class="btn btn-danger" type="submit">Anular</button>
                             </form>
                         </td>
+                        <td><a href="{{ route('Documento.show',$documento->documento_original)}}" class="btn btn-primary">Ver Imagen</a></td>
                     </tr>
                 @endforeach
             </tbody>

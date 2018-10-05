@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pagos extends Model
+class Pago extends Model
 {
     protected $fillable = [
         'detalle',
