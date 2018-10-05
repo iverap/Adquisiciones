@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipoDocumento extends Model
+class Categoria extends Model
 {
-    protected $table = 'tipos_documento';
-    protected $primaryKey = 'id_tipodoc';
+    protected $table = 'categorias';
+    protected $primaryKey = 'id_categoria';
     protected $dates = ['delete_at'];
     public $timestamps = false;
     protected $fillable = [
-        'nombre_tipodoc',
+        'nombre_categoria',
     ];
 
 }

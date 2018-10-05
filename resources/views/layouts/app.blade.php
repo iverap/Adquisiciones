@@ -74,17 +74,30 @@
                                     <a class="dropdown-item" href="/Adquisiciones/public/Documento/">Buscar Documento</a>
                                 </div>
                             </li>
-
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Mantenedores
+                                    Categoria
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Adquisiciones/public/mantenedorProveedor">Proveedor</a>
-                                    <a class="dropdown-item" href="#">Buscar Factura</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Categoria">Listar Categorias</a>
                                 </div>
                             </li>
-
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Tipo de Documento
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/Adquisiciones/public/TipoDocumento">Listar Tipos de Documento</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Compra
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Compra">Listar Compras</a>
+                                </div>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Pagos

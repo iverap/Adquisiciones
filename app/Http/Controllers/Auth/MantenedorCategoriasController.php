@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
-
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Categorias;
-use Auth;
 
 class MantenedorCategoriasController extends Controller
 {
@@ -63,9 +60,8 @@ class MantenedorCategoriasController extends Controller
 
     public function eliminarCategorias($id)
     {
-        $categorias = Categorias::find($id);
-        $categorias->delete();
-        return view('eliminado-satisf');
+       // $categorias = Categorias::find($id);
+       // $categorias->delete();
     }
     public function editarCategorias($id)
     {
