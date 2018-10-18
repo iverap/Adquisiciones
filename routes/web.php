@@ -15,13 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home/facturas/nueva', 'PagesController@nueva');
 Route::resource('Proveedores', 'ProveedoresController');
 Route::resource('Documento', 'DocumentoController');
 Route::resource('Categoria', 'CategoriaController');
 Route::resource('TipoDocumento','TipoDocController');
 Route::resource('Compra', 'CompraController');
 Route::resource('MedioPago', 'MedioPagoController');
+
+Route::get('Pago/seleccionar', 'PagoController@seleccionar');
+Route::get('Pago/pagar', 'PagoController@pagar');
+Route::resource('Pago', 'PagoController');
 
 Auth::routes();
 

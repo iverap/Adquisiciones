@@ -20,7 +20,8 @@ class CreatePagosTable extends Migration
             $table->string('observacion', 64)->nullable($value = true);
             $table->date('fecha_pago');
             $table->string('cuenta');
-            $table->integer('medio_pago')->unsigned();;
+            $table->integer('medio_pago')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

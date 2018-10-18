@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Documento;
+use App\Pago;
+
 
 class PagoController extends Controller
 {
@@ -11,9 +14,32 @@ class PagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function seleccionar()
+    {
+        $documentos = Documento::with('prov')->get();
+        return view('pagos.seleccionar', compact('documentos'));
+    }
+
     public function index()
     {
         //
+    }
+
+
+
+    /**
+     * Display a listing of the resource.
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function pagar(Request $request)
+    {
+        //var_dump($request->datos);
+        $ids = json_decode($request->datos);
+        //var_dump($ids);
+        $documentos = Documento::with('prov')->find($ids);
+        //var_dump($documentos);
+        return view('pagos.create', compact('documentos'));
     }
 
     /**
@@ -23,15 +49,17 @@ class PagoController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $documentos = Documento::all();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+        return view('pagos.create', compact('documentos'));
+    }
+        /**
+         * Store a newly created resource in storage.
+         *
+         * @param  \Illuminate\Http\Request $request
+         * @return \Illuminate\Http\Response
+         */
+
     public function store(Request $request)
     {
         //
@@ -45,7 +73,7 @@ class PagoController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

@@ -10,7 +10,7 @@ class Documento extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'numero_documento', 'proveedor', 'fecha_documento', 'fecha_vencimiento', 'tipo', 'monto_documento', 'documento_original'
+        'numero_documento', 'proveedor', 'fecha_documento', 'fecha_vencimiento', 'tipo', 'monto_documento', 'documento_original','monto_restante','monto_pagado'
     ];
 
     protected $dates = ['deleted_at'];

@@ -70,6 +70,8 @@ class DocumentoController extends Controller
             'fecha_vencimiento'=> $request->get('fecha_vencimiento'),
             'tipo'=> $request->get('tipo'),
             'monto_documento'=> $request->get('monto_documento'),
+            'monto_restante'=> $request->get('monto_documento'),
+            'monto_pagado'=> 0,
             'documento_original'=> $fileName
         ]);
         $documento->save();
