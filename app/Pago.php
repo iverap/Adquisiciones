@@ -11,7 +11,6 @@ class Pago extends Model
 
     protected $fillable = [
         'banco',
-        'detalle',
         'monto',
         'fecha_pago',
         'observacion',
@@ -25,7 +24,7 @@ class Pago extends Model
 
     protected $primaryKey = 'id_pago';
 
-    public function docs(){
+    public function documentos(){
 
         return $this->BelongsToMany(Documento::class)->withPivot('monto');
 

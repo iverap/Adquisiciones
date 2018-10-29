@@ -8,7 +8,7 @@ class MedioPago extends Model
 {
     //
     protected $fillable = [
-        'medio', 'banco', 'nro_cuenta', 'nro_transaccion'
+        'medio'
     ];
     protected $dates = ['delete_at'];
     public $timestamps = false;

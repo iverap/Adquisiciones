@@ -22,88 +22,125 @@
                     </div><br />
                 @endif
                 <form method="post" action="{{ route('Pago.store') }}">
+                    @csrf
                     <div class="card uper">
                         <div class="card-header">
-                            Nuevo Documento
+                            Datos del Pago
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         @csrf
-                                        <label for="name">Banco:</label>
-                                        <input type="text" class="form-control" name="banco"/>
+                                        <label for="banco">Banco:</label>
+                                        <select name="banco" id="banco" class="form-control">
+                                            <option>Santander</option>
+                                            <option>Banco Estado</option>
+                                            <option>BCI</option>
+                                            {{--
+                                            @foreach($medio_pagos as $medio_pago)
+                                                <option value="{{$medio_pago->id_mediopago}}">{{$medio_pago->medio}}</option>
+                                            @endforeach
+                                            --}}
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="quantity">Fecha de Pago:</label>
+                                        <label for="fecha_pago">Fecha de Pago:</label>
                                         <input type="date" class="form-control" name="fecha_pago"/>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="observacion">Observaciones:</label>
+                                        <textarea class="form-control" rows="5" name="observacion"></textarea>
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="proveedor">Proveedor:</label>
-                                        <select name="proveedor" id="proveedor" class="form-control">
-                                            @foreach($proveedores as $proveedor)
-                                                <option value="{{$proveedor->id_proveedor}}">{{$proveedor->nombre_proveedor}}</option>
+                                        <label for="medio_pago">Medios de Pago:</label>
+                                        <select name="medio_pago" id="medio_pago" class="form-control">
+                                            <option value="1">Efectivo</option>
+                                            <option value="2">Deposito</option>
+                                            <option value="3">Transferencia</option>
+                                            {{--
+                                            @foreach($medio_pagos as $medio_pago)
+                                                <option value="{{$medio_pago->id_mediopago}}">{{$medio_pago->medio}}</option>
                                             @endforeach
+                                            --}}
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="tipo">Tipo:</label>
-                                        <select class="form-control" name="tipo">
-                                            <option>FACEX</option>
-                                            <option>FACEL</option>
-                                            <option>BOL</option>
-                                            <option>BOLEC</option>
-                                            <option>ODE</option>
+                                        <label for="cuenta">Cuenta:</label>
+                                        <select class="form-control" name="cuenta">
+                                            <option>Scotibank 1</option>
+                                            <option>Scotibank 2</option>
+                                            <option>Placeholder</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="quantity">Fecha Del Documento:</label>
-                                        <input type="date" class="form-control" name="fecha_documento"/>
+                                        <label for="nro_cuenta">Numero de cuenta:</label>
+                                        <input type="text" class="form-control" name="nro_cuenta"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="quantity">Monto del Documento:</label>
-                                        <input type="text" class="form-control" name="monto_documento"/>
+                                        <label for="nro_transaccion">Numero de Transaccion:</label>
+                                        <input type="text" class="form-control" name="nro_transaccion"/>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Agregar</button>
+
                         </div>
                     </div>
-                </form>
-                <table id='tabla' class="table table-striped">
-                    <thead>
-                    <tr>
-                        <td>id</td>
-                        <td>Numero</td>
-                        <td>Proveedor</td>
-                        <td>Fecha de Documento</td>
-                        <td>Fecha de Vencimiento</td>
-                        <td>Tipo</td>
-                        <td>Monto</td>
-                        <td>Accion</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($documentos as $documento)
+
+                    <table id='tabla' class="table table-striped">
+                        <thead>
                         <tr>
-                            <td>{{$documento->id_documento}}</td>
-                            <td>{{$documento->numero_documento}}</td>
-                            <td>{{$documento->prov->nombre_proveedor}}</td>
-                            <td>{{$documento->fecha_documento}}</td>
-                            <td>{{$documento->fecha_vencimiento}}</td>
-                            <td>{{$documento->tipo}}</td>
-                            <td>{{$documento->monto_documento}}</td>
-                            <td><a href="{{ route('Documento.show',$documento->documento_original)}}" class="btn btn-primary">Ver Imagen</a></td>
+                            <td>Numero</td>
+                            <td>Monto Total</td>
+                            <td>Monto Restante</td>
+                            <td>Monto a Pagar</td>
+                            <td>Pago Total</td>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @foreach($documentos as $documento)
+                            <tr>
+                                <td>{{$documento->numero_documento}}</td>
+                                <td>{{$documento->monto_documento}}</td>
+                                <td>{{$documento->monto_restante}}</td>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="hidden" class="form-control" value="{{$documento->id_documento}}" name="ids[]"/>
+                                        <label for="{{$documento->id_documento}}"> Monto a Pagar:</label>
+                                        <input type="number" class="form-control" value="0" id="{{$documento->id_documento}}" name="montos[]"/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <label for="checkbox"> Pago Total:</label>
+                                        <input type="checkbox" name="checkfield" id="checkbox"  onchange="doalert(this,{{$documento->monto_restante}},{{$documento->id_documento}})"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
             </div>
             <div class="col-md-1"></div>
         </div>
     </div>
+
+    <script>
+        function doalert(checkboxElem,monto,id_campo) {
+            var campo = document.getElementById(id_campo);
+            if (checkboxElem.checked) {
+                campo.value = monto;
+                campo.readOnly = true;
+            } else {
+                campo.readOnly = false;
+            }
+        }
+    </script>
 @endsection

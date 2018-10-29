@@ -17,6 +17,7 @@ class CreateDocumentoPagoTable extends Migration
             $table->increments('id');
             $table->integer('documento_id')->unsigned();
             $table->integer('pago_id')->unsigned();
+            $table->integer('monto');
 
             $table->foreign('documento_id')->references('id_documento')->on('documentos')->onDelete('cascade');
             $table->foreign('pago_id')->references('id_pago')->on('pagos')->onDelete('cascade');

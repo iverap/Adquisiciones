@@ -22,7 +22,8 @@ class PagoController extends Controller
 
     public function index()
     {
-        //
+        $pagos = Pago::all();
+        return view('pagos.index', compact('pagos'));
     }
 
 
@@ -62,7 +63,68 @@ class PagoController extends Controller
 
     public function store(Request $request)
     {
-        //
+        /*
+        $request->validate([
+            'numero_documento'=>'required|integer',
+            'proveedor' => 'required',
+            'fecha_documento'=>'required|date',
+            'fecha_vencimiento'=>'required|date',
+            'tipo'=>'required',
+            'monto_documento'=>'required|integer',
+            'documento_original'=>'image|nullable|max:1999'
+        ]);
+
+        if ($request->hasFile('documento_original')){
+            $extension = $request->file('documento_original')->getClientOriginalExtension();
+            $fileName = $request->get('proveedor').'_'.$request->get('numero_documento').'_'.time().'.'.$extension;
+            $path = $request->file('documento_original')->storeAs('public/imagenes_facturas', $fileName);
+        } else{
+            $fileName = 'noImage.jpg';
+        }*/
+        $ids = $request->get('ids');
+        $montos = $request->get('montos');
+        $sumaMontos = 0;
+        for($i = 0;$i < sizeof($montos);$i++) {
+            $sumaMontos += $montos[$i];
+        }
+        $pago = new Pago([
+            'monto' => $sumaMontos,
+            'banco' => $request->get('banco'),
+            'observacion' => $request->get('observacion'),
+            'fecha_pago' => $request->get('fecha_pago'),
+            'cuenta' => $request->get('cuenta'),
+            'nro_cuenta' => $request->get('nro_cuenta'),
+            'nro_transaccion' => $request->get('nro_transaccion'),
+            'medio_pago' => $request->get('medio_pago')
+        ]);
+        $pago->save();
+        $pagoId = Pago::find($pago->id_pago);
+        for($i = 0;$i < sizeof($montos);$i++) {
+            $pagoId->documentos()->attach($ids[$i], ['monto' => $montos[$i]]);
+        }
+        $documentos = Documento::find($ids);
+        $i=0;
+        foreach ($documentos as $documento){
+            $documento->monto_restante -= $montos[$i];
+            $documento->monto_pagado += $montos[$i];
+            $documento->save();
+            $i++;
+            }
+
+
+
+        return redirect('/Pago')->with('success', 'Pago Agregado');
+
+        /*
+        $ids = $request->get('ids');
+        $montos = $request->get('montos');
+        for($i = 0;$i < sizeof($ids);$i++){
+            echo $ids[$i];
+            echo'<br>';
+            echo $montos[$i];
+            echo'<br>';
+            echo'<br>';
+        }*/
     }
 
     /**

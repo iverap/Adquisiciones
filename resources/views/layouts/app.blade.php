@@ -116,7 +116,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/Adquisiciones/public/Pago/seleccionar">Nuevo Pago</a>
-                                    <a class="dropdown-item" href="#">Place Holder</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Pago/">Lista Pagos</a>
                                 </div>
                             </li>
 
@@ -129,7 +129,7 @@
                                     <a class="dropdown-item" href="/Adquisiciones/public/Proveedores/">Listado</a>
                                 </div>
                             </li>
-
+                            {{--
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Rendiciones
@@ -139,6 +139,7 @@
                                     <a class="dropdown-item" href="#">Place Holder</a>
                                 </div>
                             </li>
+                            --}}
                         @endguest
                     </ul>
                 </div>

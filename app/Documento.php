@@ -22,4 +22,10 @@ class Documento extends Model
         return $this->BelongsTo(Proveedores::class,'proveedor', 'id_proveedor')->withTrashed();
 
     }
+
+    public function pagos(){
+
+        return $this->BelongsToMany(Pago::class)->withPivot('monto');
+
+    }
 }
