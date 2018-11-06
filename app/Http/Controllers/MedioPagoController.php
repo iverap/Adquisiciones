@@ -49,10 +49,7 @@ class MedioPagoController extends Controller
     {
         //'medio', 'banco', 'nro_cuenta', 'nro_transaccion'
         $mediopago = new MedioPago([
-            'medio' => $request->get('medio'),
-            'banco'=> $request->get('banco'),
-            'nro_cuenta'=> $request->get('nro_cuenta'),
-            'nro_transaccion'=> $request->get('nro_transaccion')
+            'medio' => $request->get('medio')
         ]);
         $mediopago->save();
         return redirect('/MedioPago')->with('success', 'Medio pago Agregado');

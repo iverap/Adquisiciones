@@ -37,11 +37,6 @@
                                             <option>Santander</option>
                                             <option>Banco Estado</option>
                                             <option>BCI</option>
-                                            {{--
-                                            @foreach($medio_pagos as $medio_pago)
-                                                <option value="{{$medio_pago->id_mediopago}}">{{$medio_pago->medio}}</option>
-                                            @endforeach
-                                            --}}
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -57,14 +52,9 @@
                                     <div class="form-group">
                                         <label for="medio_pago">Medios de Pago:</label>
                                         <select name="medio_pago" id="medio_pago" class="form-control">
-                                            <option value="1">Efectivo</option>
-                                            <option value="2">Deposito</option>
-                                            <option value="3">Transferencia</option>
-                                            {{--
                                             @foreach($medio_pagos as $medio_pago)
                                                 <option value="{{$medio_pago->id_mediopago}}">{{$medio_pago->medio}}</option>
                                             @endforeach
-                                            --}}
                                         </select>
                                     </div>
                                     <div class="form-group">

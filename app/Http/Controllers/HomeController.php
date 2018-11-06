@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Charts\SampleChart;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
     }
     public function eliminado()
     {
+
         return view('eliminado-satisf');
     }
 }

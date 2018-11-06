@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MedioPago;
 use Illuminate\Http\Request;
 use App\Documento;
 use App\Pago;
@@ -40,7 +41,8 @@ class PagoController extends Controller
         //var_dump($ids);
         $documentos = Documento::with('prov')->find($ids);
         //var_dump($documentos);
-        return view('pagos.create', compact('documentos'));
+        $medio_pagos=MedioPago::all();
+        return view('pagos.create', compact('documentos','medio_pagos'));
     }
 
     /**

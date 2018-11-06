@@ -26,6 +26,12 @@ Route::get('Pago/seleccionar', 'PagoController@seleccionar');
 Route::get('Pago/pagar', 'PagoController@pagar');
 Route::resource('Pago', 'PagoController');
 
+
+Route::get('Grafico/seleccionar', 'GraficoController@seleccionar');
+Route::get('Grafico/pagos_cuentas', 'GraficoController@pagosCuentas');
+Route::post('Grafico', 'GraficoController@index')->name('Grafico');
+Route::post('Grafico/cuenta', 'GraficoController@graficoCuenta')->name('Grafico.cuenta');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

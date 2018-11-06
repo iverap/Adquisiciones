@@ -30,21 +30,6 @@
                             <label for="name">Medio:</label>
                             <input type="text" class="form-control" name="medio"/>
                         </div>
-                        <div class="form-group">
-                            @csrf
-                            <label for="name">Banco:</label>
-                            <input type="text" class="form-control" name="banco"/>
-                        </div>
-                        <div class="form-group">
-                            @csrf
-                            <label for="name">Numero de cuenta:</label>
-                            <input type="text" class="form-control" name="nro_cuenta"/>
-                        </div>
-                        <div class="form-group">
-                            @csrf
-                            <label for="name">Numero de Transaccion:</label>
-                            <input type="text" class="form-control" name="nro_transaccion"/>
-                        </div>
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </form>
                 </div>
