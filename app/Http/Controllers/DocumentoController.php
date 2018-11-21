@@ -175,7 +175,8 @@ class DocumentoController extends Controller
     {
         $documento = Documento::find($id_documento);
         $documento->delete();
-
+        $compra = Compra::where('documento',$id_documento);
+        $compra->delete();
         return redirect('/Documento')->with('success', 'Documento Anulado');
     }
 }
