@@ -32,7 +32,7 @@
                         <td>{{$documento->prov->nombre_proveedor}}</td>
                         <td>{{$documento->fecha_documento}}</td>
                         <td>{{$documento->fecha_vencimiento}}</td>
-                        <td>{{$documento->tipo}}</td>
+                        <td>{{$documento->tipodoc->nombre_tipodoc}}</td>
                         <td>{{$documento->monto_documento}}</td>
                         <td><a href="{{ route('Documento.edit',$documento->id_documento)}}" class="btn btn-primary">Editar</a></td>
                         <td>
