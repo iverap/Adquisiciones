@@ -3,15 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Compra extends Model
 {
-    //
+    use SoftDeletes;
     protected $fillable = [
         'categoria', 'documento', 'detalle', 'descripcion_gasto', 'monto_gasto'
     ];
     protected $dates = ['delete_at'];
-    public $timestamps = false;
     protected $primaryKey = 'id_compra';
 
     public function categ(){
