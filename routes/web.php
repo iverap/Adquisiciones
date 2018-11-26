@@ -27,10 +27,12 @@ Route::get('Pago/pagar', 'PagoController@pagar');
 Route::resource('Pago', 'PagoController');
 
 
-Route::get('Grafico/seleccionar', 'GraficoController@seleccionar');
-Route::get('Grafico/pagos_cuentas', 'GraficoController@pagosCuentas');
+Route::get('Grafico/seleccionar', 'GraficoController@seleccionar'); //por cuenta
+Route::get('Grafico/pagos_cuentas', 'GraficoController@pagosCuentas');//por proveedor
+Route::get('Grafico/pagos_categoria', 'GraficoController@pagosCategoria');//por categoria
 Route::post('Grafico', 'GraficoController@index')->name('Grafico');
 Route::post('Grafico/cuenta', 'GraficoController@graficoCuenta')->name('Grafico.cuenta');
+Route::post('Grafico/categoria', 'GraficoController@graficoCategoria')->name('Grafico.categoria');
 
 Auth::routes();
 
