@@ -67,21 +67,19 @@ class TipoDocController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_tipodoc)
     {
-        //
+        $tipodoc = TipoDocumento::find($id_tipodoc);
+        return view('tiposdoc.edit', compact('tipodoc'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_tipodoc)
     {
-        //
+        $tipodoc = TipoDocumento::find($id_tipodoc);
+        $tipodoc->nombre_tipodoc = $request->get('nombre_tipodoc');
+        $tipodoc->save();
+
+        return redirect('/TipoDocumento')->with('success', 'Tipo de Documento actualizado');
     }
 
     /**

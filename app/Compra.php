@@ -14,9 +14,9 @@ class Compra extends Model
     protected $primaryKey = 'id_compra';
 
     public function categ(){
-        return $this->BelongsTo(Categoria::class,'categoria', 'id_categoria');
+        return $this->BelongsTo(Categoria::class,'categoria', 'id_categoria')->withTrashed();
     }
     public function docum(){
-        return $this->BelongsTo(Documento::class,'documento', 'id_documento');
+        return $this->BelongsTo(Documento::class,'documento', 'id_documento')->withTrashed();
     }
 }

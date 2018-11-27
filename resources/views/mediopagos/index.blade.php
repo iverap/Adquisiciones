@@ -16,10 +16,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <td>Medio</td>
-                    <td>Banco</td>
-                    <td>Numero de cuenta</td>
-                    <td>Numero de Transaccion</td>
+                    <td>Medio de Pago</td>
                     <td colspan="2">Accion</td>
                 </tr>
             </thead>
@@ -27,9 +24,7 @@
                 @foreach($mediopagos as $mediopago)
                     <tr>
                         <td>{{$mediopago->medio}}</td>
-                        <td>{{$mediopago->banco}}</td>
-                        <td>{{$mediopago->nro_cuenta}}</td>
-                        <td>{{$mediopago->nro_transaccion}}</td>
+
                         <td><a href="{{ route('MedioPago.edit',$mediopago->id_mediopago)}}" class="btn btn-primary">Editar</a></td>
                         <td>
                             <form action="{{ route('MedioPago.destroy', $mediopago->id_mediopago)}}" method="post">

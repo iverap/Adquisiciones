@@ -86,22 +86,38 @@ class CompraController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    categ docum*/
+    public function edit($id_compra)
     {
-        //
+        //$documento = Documento::find($id_documento);
+        $compra = Compra::find($id_compra);
+        //$documento = Documento::with('prov')->find($id_documento);
+        $categorias = Categoria::all();
+        $documentos = Documento::all();
+        return view('compras.edit', compact('compra','documentos','categorias'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_compra)
     {
         //
+        /**  $request->validate([
+            'numero_documento'=>'required|integer',
+            'proveedor' => 'required',
+            'fecha_documento'=>'required|date',
+            'fecha_vencimiento'=>'required|date',
+            'tipo'=>'required',
+            'monto_documento'=>'required|integer',
+            'documento_original'=>'image|nullable|max:1999'
+        ]);
+         */
+        $compra = Compra::find($id_compra);
+        $compra->categoria = $request->get('categoria');
+        $compra->documento = $request->get('documento');
+        $compra->detalle = $request->get('detalle');
+        $compra->descripcion_gasto = $request->get('descripcion_gasto');
+        $compra->save();
+
+        return redirect('/Compra')->with('success', 'Compra actualizada');
     }
 
     /**
