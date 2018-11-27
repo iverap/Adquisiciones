@@ -18,7 +18,7 @@
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
-                </div><br />
+                </div><br/>
             @endif
             <form method="post" action="{{ route('Compra.update', $compra->id_compra) }}" enctype="multipart/form-data">
                 @method('PATCH')
@@ -35,9 +35,9 @@
                 <div class="form-group">
                     <label for="documento">Documento:</label>
                     <select name="documento" id="documento" class="form-control">
-                        <option value="{{$compra->documento}}" selected=selected >{{$compra->docum->nombre_documento}}</option>
+                        <option value="{{$compra->documento}}" selected=selected >{{$compra->docum->numero_documento}}</option>
                         @foreach($documentos as $documento)
-                            <option value="{{$documento->id_documento}}">{{$documento->nombre_documento}}</option>
+                            <option value="{{$documento->id_documento}}">{{$documento->numero_documento}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -53,9 +53,8 @@
                     <label for="quantity">Monto Gasto:</label>
                     <input type="text" class="form-control" name="monto_gasto" value="{{ $compra->monto_gasto }}"/>
                 </div>
-
+                <button type="submit" class="btn btn-primary">Editar</button>
             </form>
-            <button type="submit" class="btn btn-primary">Editar</button>
     </div>
-        </div>
+</div>
 @endsection
