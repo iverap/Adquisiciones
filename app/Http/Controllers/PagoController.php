@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\MedioPago;
+use App\Proveedores;
 use Illuminate\Http\Request;
 use App\Documento;
 use App\Pago;
@@ -15,11 +16,20 @@ class PagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function seleccionar()
+
+    public function selecProv()
     {
-        $documentos = Documento::with('prov')->get();
+        $proveedores = Proveedores::all();
+        return view('pagos.selecProv', compact('proveedores'));
+    }
+
+    public function seleccionar(Request $request)
+    {
+        $documentos = Documento::with('prov')->where('proveedor', '=',$request->proveedor)->whereColumn('monto_documento','<>','monto_pagado')->get();
         return view('pagos.seleccionar', compact('documentos'));
     }
+
+
 
     public function index()
     {

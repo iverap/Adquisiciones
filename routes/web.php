@@ -16,13 +16,17 @@ Route::get('/', function () {
 });
 
 Route::resource('Proveedores', 'ProveedoresController');
-Route::resource('Documento', 'DocumentoController');
 Route::resource('Categoria', 'CategoriaController');
 Route::resource('TipoDocumento','TipoDocController');
 Route::resource('Compra', 'CompraController');
 Route::resource('MedioPago', 'MedioPagoController');
 
-Route::get('Pago/seleccionar', 'PagoController@seleccionar');
+Route::get('Documento/buscar', 'DocumentoController@buscar');
+Route::post('Documento/busqueda', 'DocumentoController@busqueda')->name('Documento.busqueda');
+Route::resource('Documento', 'DocumentoController');
+
+Route::get('Pago/proveedor', 'PagoController@selecProv');
+Route::post('Pago/seleccionar', 'PagoController@seleccionar')->name('Pago.proveedor');
 Route::get('Pago/pagar', 'PagoController@pagar');
 Route::resource('Pago', 'PagoController');
 

@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-header">Sistemas</div>
+                                <div class="card-header">Documentos</div>
                                 <div class="card-body">
 
                                 </div>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-header">Sistemas</div>
+                                <div class="card-header">Pagos</div>
                                 <div class="card-body">
 
                                 </div>
@@ -32,6 +32,26 @@
                         </div>
                     </div>
                     <h2 class="mb-4"></h2> {{-- espacio--}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Estadisticas</div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Otros</div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{--
+                    <h2 class="mb-4"></h2>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
@@ -50,26 +70,9 @@
                             </div>
                         </div>
                     </div>
-                    <h2 class="mb-4"></h2> {{-- espacio--}}
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">Sistemas</div>
-                                <div class="card-body">
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">Sistemas</div>
-                                <div class="card-body">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <h2 class="mb-4"></h2> {{-- espacio--}}
+                    <h2 class="mb-4"></h2>
+                    --}}
                 </div>
             </div>
         </div>

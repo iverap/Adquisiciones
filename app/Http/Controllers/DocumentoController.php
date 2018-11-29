@@ -11,6 +11,36 @@ use App\TipoDocumento;
 use File;
 class DocumentoController extends Controller
 {
+    public function buscar()
+    {
+        $proveedores = Proveedores::all();
+        return view('documentos.buscar', compact('proveedores'));
+    }
+
+    public function busqueda(Request $request)
+    {
+        $request->validate([
+            'inicio'=>'date',
+            'fin'=>'after_or_equal:inicio'
+        ]);
+
+        if ($request->pagos) {
+            if ($request->todos) {
+                $documentos = Documento::with('prov')->whereColumn('monto_documento','<>','monto_pagado')->whereBetween('fecha_documento', [$request->inicio, $request->fin])->get();
+            } else {
+                $documentos = Documento::with('prov')->whereColumn('monto_documento','<>','monto_pagado')->where('proveedor', '=', $request->proveedor)->whereBetween('fecha_documento', [$request->inicio, $request->fin])->get();
+            }
+        }else{
+            if ($request->todos) {
+                $documentos = Documento::with('prov')->whereBetween('fecha_documento', [$request->inicio, $request->fin])->get();
+            } else {
+                $documentos = Documento::with('prov')->where('proveedor', '=', $request->proveedor)->whereBetween('fecha_documento', [$request->inicio, $request->fin])->get();
+            }
+        }
+
+        return view('documentos.index', compact('documentos'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -55,7 +85,7 @@ class DocumentoController extends Controller
             'numero_documento'=>'required|integer',
             'proveedor' => 'required',
             'fecha_documento'=>'required|date',
-            'fecha_vencimiento'=>'required|date',
+            'fecha_vencimiento'=>'required|date|after_or_equal:fecha_documento',
             'tipo'=>'required',
             'monto_documento'=>'required|integer',
             'documento_original'=>'image|nullable|max:1999',

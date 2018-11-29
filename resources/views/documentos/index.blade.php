@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <style>
         .uper {
             margin-top: 40px;
@@ -22,6 +23,8 @@
                     <td>Fecha de Vencimiento</td>
                     <td>Tipo</td>
                     <td>Monto</td>
+                    <td>Pagado</td>
+                    <td>Restante</td>
                     <td>Accion</td> {{--colspan="2"--}}
                     <td></td>
                     <td></td>
@@ -35,7 +38,9 @@
                         <td>{{$documento->fecha_documento}}</td>
                         <td>{{$documento->fecha_vencimiento}}</td>
                         <td>{{$documento->tipodoc->nombre_tipodoc}}</td>
-                        <td>{{$documento->monto_documento}}</td>
+                        <td>${{$documento->monto_documento}}</td>
+                        <td>${{$documento->monto_pagado}}</td>
+                        <td>${{$documento->monto_restante}}</td>
                         <td><a href="{{ route('Documento.edit',$documento->id_documento)}}" class="btn btn-primary">Editar</a></td>
                         <td>
                             <form action="{{ route('Documento.destroy', $documento->id_documento)}}" method="post">
@@ -49,15 +54,20 @@
                 @endforeach
             </tbody>
         </table>
-    <div>
+    </div>
 
-        <script>
+
+    <script>
             $(document).ready(function() {
                 $('#tabla').dataTable( {
                     "columnDefs": [
-                        { "orderable": false, "targets": [6,7,8]}
-                    ]
+                        { "orderable": false, "targets": [8,9,10]}
+                    ],
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+                    }
                 } );
             });
         </script>
+
 @endsection

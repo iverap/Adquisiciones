@@ -12,6 +12,11 @@ class GraficoController extends Controller
 {
     public function index(Request $request)
     {
+        $request->validate([
+            'inicio'=>'date',
+            'fin'=>'after_or_equal:inicio'
+        ]);
+
         $labels = array();
         $montos = array();
         $inicio = date_create($request->inicio);
@@ -77,6 +82,11 @@ class GraficoController extends Controller
 
     public function graficoCuenta(Request $request){
 
+        $request->validate([
+            'inicio'=>'date',
+            'fin'=>'after_or_equal:inicio'
+        ]);
+
         $pagos = DB::select
         ('SELECT MONTH(fecha_pago) MesDePago, buscados.monto, buscados.cuenta
           FROM (SELECT DISTINCT id_pago,pagos.monto, fecha_pago, cuenta
@@ -118,6 +128,11 @@ class GraficoController extends Controller
     }
 
     public function graficoCategoria(Request $request){
+
+        $request->validate([
+            'inicio'=>'date',
+            'fin'=>'after_or_equal:inicio'
+        ]);
 
         $pagos = DB::select
         ('SELECT MONTH(fecha_pago) MesDePago, buscados.monto 

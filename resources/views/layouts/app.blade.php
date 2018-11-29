@@ -15,6 +15,7 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-html5-1.5.4/rg-1.1.0/sl-1.2.6/datatables.min.js"></script>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -76,7 +77,8 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/Adquisiciones/public/Documento/create">Nuevo Documento</a>
-                                    <a class="dropdown-item" href="/Adquisiciones/public/Documento/">Buscar Documento</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Documento/">Listar Documentos</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Documento/buscar">Buscar Documentos</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -84,7 +86,7 @@
                                     Pagos
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Adquisiciones/public/Pago/seleccionar">Nuevo Pago</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Pago/proveedor">Nuevo Pago</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/Pago/">Lista Pagos</a>
                                 </div>
                             </li>

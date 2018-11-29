@@ -25,6 +25,8 @@
                         <td>Fecha de Vencimiento</td>
                         <td>Tipo</td>
                         <td>Monto</td>
+                        <td>Monto Pagado</td>
+                        <td>Monto Restante</td>
                         <td>Accion</td>
                     </tr>
                 </thead>
@@ -38,6 +40,8 @@
                             <td>{{$documento->fecha_vencimiento}}</td>
                             <td>{{$documento->tipodoc->nombre_tipodoc}}</td>
                             <td>{{$documento->monto_documento}}</td>
+                            <td>{{$documento->monto_pagado}}</td>
+                            <td>{{$documento->monto_restante}}</td>
                             <td><a href="{{ route('Documento.show',$documento->documento_original)}}" class="btn btn-primary">Ver Imagen</a></td>
                         </tr>
                     @endforeach
@@ -52,7 +56,14 @@
         <script>
 
             $(document).ready(function() {
-                var table = $('#tabla').DataTable();
+                var table = $('#tabla').DataTable( {
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+                    },
+                    "columnDefs": [
+                        { "visible": false, "targets": 0 }
+                    ]
+                } );
 
                 $('#tabla tbody').on('click', 'tr', function () {
                     $(this).toggleClass('selected');
