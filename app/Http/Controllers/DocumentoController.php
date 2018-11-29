@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use Illuminate\Http\Request;
 use App\Documento;
 use App\Proveedores;
+use App\Compra;
+use App\TipoDocumento;
 use File;
 class DocumentoController extends Controller
 {
@@ -34,7 +37,9 @@ class DocumentoController extends Controller
     {
         //
         $proveedores = Proveedores::all();
-        return view('documentos.create', compact('proveedores'));
+        $categorias = Categoria::all();
+        $tiposdoc = TipoDocumento::all();
+        return view('documentos.create', compact('proveedores','categorias','tiposdoc'));
     }
 
     /**
@@ -53,7 +58,8 @@ class DocumentoController extends Controller
             'fecha_vencimiento'=>'required|date',
             'tipo'=>'required',
             'monto_documento'=>'required|integer',
-            'documento_original'=>'image|nullable|max:1999'
+            'documento_original'=>'image|nullable|max:1999',
+            'categoria'=>'required',
         ]);
 
         if ($request->hasFile('documento_original')){
@@ -63,7 +69,7 @@ class DocumentoController extends Controller
         } else{
             $fileName = 'noImage.jpg';
         }
-        $documento = new Documento([
+        $documento = Documento::create([
             'numero_documento' => $request->get('numero_documento'),
             'proveedor'=> $request->get('proveedor'),
             'fecha_documento'=> $request->get('fecha_documento'),
@@ -75,6 +81,17 @@ class DocumentoController extends Controller
             'documento_original'=> $fileName
         ]);
         $documento->save();
+
+
+        $compra = new Compra([
+            'categoria' => $request->get('categoria'),
+            'documento'=> $documento->id_documento,
+            'detalle'=> $request->get('detalle'),
+            'descripcion_gasto'=> $request->get('descripcion_gasto'),
+            'monto_gasto'=> $documento->monto_documento,
+        ]);
+        $compra->save();
+       //dd($compra->monto_gasto);
         return redirect('/Documento')->with('success', 'Documento Agregado');
     }
 
@@ -158,7 +175,8 @@ class DocumentoController extends Controller
     {
         $documento = Documento::find($id_documento);
         $documento->delete();
-
+        $compra = Compra::where('documento',$id_documento);
+        $compra->delete();
         return redirect('/Documento')->with('success', 'Documento Anulado');
     }
 }

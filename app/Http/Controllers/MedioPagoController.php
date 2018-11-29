@@ -34,15 +34,15 @@ class MedioPagoController extends Controller
     public function create()
     {
         //
-      //  $categorias = Categoria::all();
-       // $documentos = Documento::all();
+        //  $categorias = Categoria::all();
+        // $documentos = Documento::all();
         return view('mediopagos.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,7 +58,7 @@ class MedioPagoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -69,26 +69,24 @@ class MedioPagoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_mediopago)
     {
-        //
+       $mediopago = MedioPago::find($id_mediopago);
+        return view('mediopagos.edit', compact('mediopago'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_mediopago)
     {
-        //
-    }
 
+        $mediopago = MedioPago::find($id_mediopago);
+        $mediopago->medio = $request->get('medio');
+        $mediopago->save();
+
+        return redirect('/MedioPago')->with('success', 'Medio de Pago actualizado');
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categoria;
+use App\Charts\categorias;
+
 class CategoriaController extends Controller
 {
 
@@ -67,33 +69,49 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_categoria)
     {
-        //
+        $categoria = Categoria::find($id_categoria);
+        return view('categorias.edit', compact('categoria'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_categoria)
     {
-        //
+
+        $categoria = Categoria::find($id_categoria);
+        $categoria->nombre_categoria = $request->get('nombre_categoria');
+        $categoria->save();
+
+        return redirect('/Categoria')->with('success', 'Categoria actualizada');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $categorias = Categoria::find($id);
         $categorias->delete();
         return redirect('/Categoria')->with('success', 'Categoria Eliminada');
+    }
+    public function chart()
+    {
+        $result = \DB::table('categorias')
+            ->where('nombre_categoria','=','papeleria')
+            ->orderBy('id_categoria', 'ASC')
+            ->get();
+        return response()->json($result);
+    }
+    public function nosequehago(){
+        $data = Categoria::groupBy('nombre_categoria')
+            ->get()
+/**
+            ->map(function ($item) {
+                // Return the number of persons with that age
+                return count($item);
+            })**/;
+
+        $chart = new categorias;
+        $chart->labels($data->keys());
+
+        $chart->dataset('My dataset', 'line', $data->values());
+        return view('categorias.chart', compact('chart'));
     }
 }

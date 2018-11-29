@@ -53,12 +53,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="tipo">Tipo:</label>
-                                        <select class="form-control" name="tipo">
-                                            <option>FACEX</option>
-                                            <option>FACEL</option>
-                                            <option>BOL</option>
-                                            <option>BOLEC</option>
-                                            <option>ODE</option>
+                                        <select name="tipo" id="tipo" class="form-control">
+                                            @foreach($tiposdoc as $tipodoc)
+                                                <option value="{{$tipodoc->id_tipodoc}}">{{$tipodoc->nombre_tipodoc}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -72,9 +70,26 @@
                                         <input type="text" class="form-control" name="monto_documento"/>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="categoria">Categoria:</label>
+                                    <select name="categoria" id="categoria" class="form-control">
+                                        @foreach($categorias as $categoria)
+                                            <option value="{{$categoria->id_categoria}}">{{$categoria->nombre_categoria}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Detalle:</label>
+                                    <input type="text" class="form-control" name="detalle"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Descripcion Gasto:</label>
+                                    <input type="text" class="form-control" name="descripcion_gasto"/>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Agregar</button>
                         </form>
+
                     </div>
                 </div>
             </div>
