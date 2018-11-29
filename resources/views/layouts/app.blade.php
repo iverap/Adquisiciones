@@ -120,6 +120,7 @@
                                     <a class="dropdown-item" href="/Adquisiciones/public/MedioPago">Listar Medios de pago</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/Compra">Listar Compras</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/TipoDocumento">Listar Tipos de Documento</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Cuenta">Listar Cuenta</a>
                                 </div>
                             </li>
                         @endguest

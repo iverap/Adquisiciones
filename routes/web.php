@@ -20,6 +20,7 @@ Route::resource('Categoria', 'CategoriaController');
 Route::resource('TipoDocumento','TipoDocController');
 Route::resource('Compra', 'CompraController');
 Route::resource('MedioPago', 'MedioPagoController');
+Route::resource('Cuenta', 'CuentaController');
 
 Route::get('Documento/buscar', 'DocumentoController@buscar');
 Route::post('Documento/busqueda', 'DocumentoController@busqueda')->name('Documento.busqueda');
