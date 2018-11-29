@@ -101,7 +101,7 @@
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" value="{{$documento->id_documento}}" name="ids[]"/>
                                         <label for="{{$documento->id_documento}}"> Monto a Pagar:</label>
-                                        <input type="number" class="form-control" value="0" id="{{$documento->id_documento}}" name="montos[]"/>
+                                        <input type="number" class="form-control" value="0" min="0" max="{{$documento->monto_restante}}" id="{{$documento->id_documento}}" name="montos[]"/>
                                     </div>
                                 </td>
                                 <td>
