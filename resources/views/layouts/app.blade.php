@@ -81,38 +81,6 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Categoria
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Adquisiciones/public/Categoria">Listar Categorias</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Tipo de Documento
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Adquisiciones/public/TipoDocumento">Listar Tipos de Documento</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Compra
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Adquisiciones/public/Compra">Listar Compras</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Medio de pago
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Adquisiciones/public/MedioPago">Listar Medios de pago</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Pagos
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -139,6 +107,17 @@
                                     <a class="dropdown-item" href="/Adquisiciones/public/Grafico/pagos_cuentas">Pagos por Cuenta</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/Grafico/seleccionar">Pagos a Proveedor</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/Grafico/pagos_categoria">Pagos por Categoria</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Otros
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Categoria">Listar Categorias</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/MedioPago">Listar Medios de pago</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Compra">Listar Compras</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/TipoDocumento">Listar Tipos de Documento</a>
                                 </div>
                             </li>
                         @endguest

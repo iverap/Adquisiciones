@@ -23,7 +23,7 @@ class PagoController extends Controller
 
     public function index()
     {
-        $pagos = Pago::all();
+        $pagos = Pago::with('medios')->get();
         return view('pagos.index', compact('pagos'));
     }
 

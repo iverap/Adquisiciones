@@ -13,7 +13,7 @@
                 {{ session()->get('success') }}
             </div><br />
         @endif
-        <table class="table table-striped">
+        <table id="tabla" class="table table-striped">
             <thead>
                 <tr>
                     <td>Documentos Pagados</td>
@@ -47,7 +47,7 @@
                         <td>{{$pago->fecha_pago}}</td>
                         <td>${{$pago->monto}}</td>
                         <td>{{$pago->cuenta}}</td>
-                        <td>{{$pago->medio_pago}}</td>
+                        <td>{{$pago->medios->medio}}</td>
                         <td>{{$pago->banco}}</td>
                         <td>{{$pago->nro_transaccion}}</td>
                         <td>{{$pago->nro_cuenta}}</td>
@@ -67,4 +67,10 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#tabla').DataTable();
+        });
+    </script>
 @endsection

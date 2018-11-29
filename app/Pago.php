@@ -29,4 +29,10 @@ class Pago extends Model
         return $this->BelongsToMany(Documento::class)->withPivot('monto');
 
     }
+
+    public function medios(){
+
+        return $this->BelongsTo(MedioPago::class,'medio_pago', 'id_mediopago')->withTrashed();
+
+    }
 }

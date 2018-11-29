@@ -13,7 +13,7 @@
                 {{ session()->get('success') }}
             </div><br />
         @endif
-        <table class="table table-striped">
+        <table id="tabla" class="table table-striped">
             <thead>
                 <tr>
                     <td>Numero</td>
@@ -22,7 +22,9 @@
                     <td>Fecha de Vencimiento</td>
                     <td>Tipo</td>
                     <td>Monto</td>
-                    <td colspan="2">Accion</td>
+                    <td>Accion</td> {{--colspan="2"--}}
+                    <td></td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -48,4 +50,14 @@
             </tbody>
         </table>
     <div>
+
+        <script>
+            $(document).ready(function() {
+                $('#tabla').dataTable( {
+                    "columnDefs": [
+                        { "orderable": false, "targets": [6,7,8]}
+                    ]
+                } );
+            });
+        </script>
 @endsection
