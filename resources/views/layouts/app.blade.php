@@ -99,6 +99,7 @@
                                     Otros
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Rendicion/seleccionar">Rendicion</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/Categoria">Listar Categorias</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/MedioPago">Listar Medios de pago</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/Compra">Listar Compras</a>
