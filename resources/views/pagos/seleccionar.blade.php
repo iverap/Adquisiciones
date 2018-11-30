@@ -75,13 +75,13 @@
 
                     //use the serialized version of selectedRowInputs as the data
                     //to be sent to the AJAX request
-                    console.log(selectedRowInputs);
+                    //console.log(selectedRowInputs);
                     //console.log('serlialized inputs: ',selectedRowInputs.serialize());
                     var ids = $.map(table.rows('.selected').data(), function (item) {
                         return item[0]
                     });
-                    console.log(ids)
-                    alert(table.rows('.selected').data().length + ' row(s) selected');
+                    //console.log(ids)
+                    //alert(table.rows('.selected').data().length + ' row(s) selected');
                     var datos = JSON.stringify(ids);
 
                     window.location = '/Adquisiciones/public/Pago/pagar?datos='+datos;

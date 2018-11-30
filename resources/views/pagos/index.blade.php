@@ -26,6 +26,7 @@
                     <td>Nro Transaccion</td>
                     <td>Nro de Cuenta</td>
                     <td>Observacion</td>
+                    <td>Accion</td>
                     {{--<td colspan="2">Accion</td>--}}
                 </tr>
             </thead>
@@ -46,20 +47,20 @@
                         </td>
                         <td>{{$pago->fecha_pago}}</td>
                         <td>${{$pago->monto}}</td>
-                        <td>{{$pago->cuenta}}</td>
+                        <td>{{$pago->pagoss->nombre_cuenta}}</td>
                         <td>{{$pago->medios->medio}}</td>
                         <td>{{$pago->banco}}</td>
                         <td>{{$pago->nro_transaccion}}</td>
                         <td>{{$pago->nro_cuenta}}</td>
                         <td>{{$pago->observacion}}</td>
-                        {{--<td><a href="{{ route('Documento.edit',$documento->id_documento)}}" class="btn btn-primary">Editar</a></td>
+                        {{--<td><a href="{{ route('Documento.edit',$documento->id_documento)}}" class="btn btn-primary">Editar</a></td>--}}
                         <td>
-                            <form action="{{ route('Documento.destroy', $documento->id_documento)}}" method="post">
+                            <form action="{{ route('Pago.destroy', $pago->id_pago)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Anular</button>
                             </form>
-                        </td>
+                        </td>{{--
                         <td><a href="{{ route('Documento.show',$documento->documento_original)}}" class="btn btn-primary">Ver Imagen</a></td>
                         --}}
                     </tr>

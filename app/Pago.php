@@ -35,6 +35,7 @@ class Pago extends Model
         return $this->BelongsTo(MedioPago::class,'medio_pago', 'id_mediopago')->withTrashed();
 
     }
+
     public function pagoss(){
 
         return $this->BelongsTo(Cuenta::class,'cuenta', 'id_cuenta')->withTrashed();

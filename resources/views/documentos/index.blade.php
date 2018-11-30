@@ -25,6 +25,7 @@
                     <td>Monto</td>
                     <td>Pagado</td>
                     <td>Restante</td>
+                    <td>Descripcion</td>
                     <td>Accion</td> {{--colspan="2"--}}
                     <td></td>
                     <td></td>
@@ -41,6 +42,10 @@
                         <td>${{$documento->monto_documento}}</td>
                         <td>${{$documento->monto_pagado}}</td>
                         <td>${{$documento->monto_restante}}</td>
+                        <td>@foreach($documento->compras as $compra)
+                                {{$compra->descripcion_gasto}}
+                            @endforeach
+                        </td>
                         <td><a href="{{ route('Documento.edit',$documento->id_documento)}}" class="btn btn-primary">Editar</a></td>
                         <td>
                             <form action="{{ route('Documento.destroy', $documento->id_documento)}}" method="post">

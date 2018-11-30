@@ -26,6 +26,8 @@ Route::get('Documento/buscar', 'DocumentoController@buscar');
 Route::post('Documento/busqueda', 'DocumentoController@busqueda')->name('Documento.busqueda');
 Route::resource('Documento', 'DocumentoController');
 
+Route::get('Pago/buscar', 'PagoController@buscar');
+Route::post('Pago/busqueda', 'PagoController@busqueda')->name('Pago.busqueda');
 Route::get('Pago/proveedor', 'PagoController@selecProv');
 Route::post('Pago/seleccionar', 'PagoController@seleccionar')->name('Pago.proveedor');
 Route::get('Pago/pagar', 'PagoController@pagar');

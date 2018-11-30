@@ -48,10 +48,10 @@
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
+                            </li>{{--
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
+                            </li>--}}
                         @else
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,6 +70,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/Adquisiciones/public/Pago/proveedor">Nuevo Pago</a>
                                     <a class="dropdown-item" href="/Adquisiciones/public/Pago/">Lista Pagos</a>
+                                    <a class="dropdown-item" href="/Adquisiciones/public/Pago/buscar">Buscar Pagos</a>
                                 </div>
                             </li>
 

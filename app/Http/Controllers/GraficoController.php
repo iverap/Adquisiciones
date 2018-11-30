@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Charts\SampleChart;
 use App\Proveedores;
 use App\Categoria;
+use App\Cuenta;
 use DB;
 
 class GraficoController extends Controller
@@ -36,7 +37,7 @@ class GraficoController extends Controller
         while($inicio < $fin){
             $totalMes = 0;
             $mes = date_format($inicio,'M');
-            var_dump($mes);
+            //var_dump($mes);
             //$numero_mes = date_format()
             $labels[$i]=$mes;
             foreach ($pagos as $pago){
@@ -44,7 +45,7 @@ class GraficoController extends Controller
                     $totalMes += $pago->monto;
                 }
             }
-            var_dump($totalMes);
+            //var_dump($totalMes);
             $montos[$i]=$totalMes;
             date_add($inicio,date_interval_create_from_date_string("1 months"));
             $i++;
@@ -68,14 +69,16 @@ class GraficoController extends Controller
 
     public function pagosCuentas(){
 
-        return view('graficos/pagos_cuenta');
+        $cuentas = Cuenta::all();
+        return view('graficos/pagos_cuenta',compact('cuentas'));
 
     }
 
     public function pagosCategoria(){
 
         $categorias = Categoria::all();
-        return view('graficos/pagos_categoria', compact('categorias'));
+        $cuentas = Cuenta::all();
+        return view('graficos/pagos_categoria', compact('categorias','cuentas'));
 
 
     }
@@ -87,14 +90,27 @@ class GraficoController extends Controller
             'fin'=>'after_or_equal:inicio'
         ]);
 
-        $pagos = DB::select
-        ('SELECT MONTH(fecha_pago) MesDePago, buscados.monto, buscados.cuenta
+        if($request->checkbox){
+            $pagos = DB::select
+            ('SELECT MONTH(fecha_pago) MesDePago, buscados.monto, buscados.cuenta
+          FROM (SELECT DISTINCT id_pago,pagos.monto, fecha_pago, cuenta
+              FROM (SELECT id_documento 
+                    FROM documentos) AS ids, 
+              pagos,documento_pago 
+              WHERE ids.id_documento=documento_id_documento and id_pago=pago_id_pago and fecha_pago >='.$request->inicio.' and fecha_pago >='.$request->fin.') AS buscados 
+          ORDER BY MesDePago');
+        }
+        else{
+            $pagos = DB::select
+            ('SELECT MONTH(fecha_pago) MesDePago, buscados.monto, buscados.cuenta
           FROM (SELECT DISTINCT id_pago,pagos.monto, fecha_pago, cuenta
               FROM (SELECT id_documento 
                     FROM documentos) AS ids, 
               pagos,documento_pago 
               WHERE cuenta = "'.$request->cuenta.'" and ids.id_documento=documento_id_documento and id_pago=pago_id_pago and fecha_pago >='.$request->inicio.' and fecha_pago >='.$request->fin.') AS buscados 
           ORDER BY MesDePago');
+        }
+
 
         $labels = array();
         $montos = array();
@@ -105,14 +121,14 @@ class GraficoController extends Controller
         while($inicio < $fin){
             $totalMes = 0;
             $mes = date_format($inicio,'M');
-            var_dump($mes);
+            //var_dump($mes);
             $labels[$i]=$mes;
             foreach ($pagos as $pago){
                 if($pago->MesDePago==date_format($inicio,'m')){
                     $totalMes += $pago->monto;
                 }
             }
-            var_dump($totalMes);
+            //var_dump($totalMes);
             $montos[$i]=$totalMes;
             date_add($inicio,date_interval_create_from_date_string("1 months"));
             $i++;
@@ -134,8 +150,10 @@ class GraficoController extends Controller
             'fin'=>'after_or_equal:inicio'
         ]);
 
-        $pagos = DB::select
-        ('SELECT MONTH(fecha_pago) MesDePago, buscados.monto 
+        if ($request->checkbox){
+
+            $pagos = DB::select
+            ('SELECT MONTH(fecha_pago) MesDePago, buscados.monto
         FROM (SELECT DISTINCT id_pago,pagos.monto, fecha_pago 
               FROM (SELECT DISTINCT id_documento 
                     FROM documentos, compras, categorias
@@ -143,6 +161,19 @@ class GraficoController extends Controller
               pagos,documento_pago 
               WHERE ids.id_documento=documento_id_documento and id_pago=pago_id_pago and fecha_pago >='.$request->inicio.' and fecha_pago >='.$request->fin.') AS buscados 
               ORDER BY MesDePago');
+        }else{
+            $pagos = DB::select
+            ('SELECT MONTH(fecha_pago) MesDePago, buscados.monto, buscados.cuenta
+        FROM (SELECT DISTINCT id_pago,pagos.monto, fecha_pago, cuenta
+              FROM (SELECT DISTINCT id_documento 
+                    FROM documentos, compras, categorias
+                    WHERE id_categoria = '.$request->categoria.' and id_categoria = categoria and documento = id_documento) AS ids, 
+              pagos,documento_pago 
+              WHERE cuenta = "'.$request->cuenta.'" and ids.id_documento=documento_id_documento and id_pago=pago_id_pago and fecha_pago >='.$request->inicio.' and fecha_pago >='.$request->fin.') AS buscados 
+              ORDER BY MesDePago');
+        }
+
+
 
         $labels = array();
         $montos = array();
@@ -153,14 +184,14 @@ class GraficoController extends Controller
         while($inicio < $fin){
             $totalMes = 0;
             $mes = date_format($inicio,'M');
-            var_dump($mes);
+            //var_dump($mes);
             $labels[$i]=$mes;
             foreach ($pagos as $pago){
                 if($pago->MesDePago==date_format($inicio,'m')){
                     $totalMes += $pago->monto;
                 }
             }
-            var_dump($totalMes);
+            //var_dump($totalMes);
             $montos[$i]=$totalMes;
             date_add($inicio,date_interval_create_from_date_string("1 months"));
             $i++;

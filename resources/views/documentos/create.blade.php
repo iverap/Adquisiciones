@@ -70,7 +70,9 @@
                                         <input type="text" class="form-control" name="monto_documento"/>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-4">
                                     <label for="categoria">Categoria:</label>
                                     <select name="categoria" id="categoria" class="form-control">
                                         @foreach($categorias as $categoria)
@@ -78,11 +80,11 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="name">Detalle:</label>
-                                    <input type="text" class="form-control" name="detalle"/>
+                                <div class="form-group col-4">
+                                    <label for="detalle">Detalle:</label>
+                                    <textarea id="detalle" class="form-control" rows="4" name="detalle"></textarea>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-4">
                                     <label for="name">Descripcion Gasto:</label>
                                     <input type="text" class="form-control" name="descripcion_gasto"/>
                                 </div>

@@ -14,9 +14,9 @@
                     </div><br />
                 @endif
                 <div class="card">
-                    <div class="card-header">Pagos por cuenta</div>
+                    <div class="card-header">Parametros de Filtrado</div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('Grafico.cuenta') }}" >
+                        <form method="post" action="{{ route('Pago.busqueda') }}" >
                             @csrf
                             <div class="form-group">
                                 <label for="quantity">Desde:</label>
@@ -26,19 +26,13 @@
                                 <label for="quantity">Hasta:</label>
                                 <input type="date" class="form-control" name="fin"/>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="cuenta">Cuenta:</label>
-                                    <select name="cuenta" id="cuenta" class="form-control">
-                                        @foreach($cuentas as $cuenta)
-                                            <option value="{{$cuenta->id_cuenta}}">{{$cuenta->nombre_cuenta}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="checkbox" id="checkbox"  onchange="doalert(this,'cuenta')"/>
-                                    <label for="checkbox"> Todas </label>
-                                </div>
+                            <div class="form-group">
+                                <label for="proveedor">Proveedor:</label>
+                                <select name="proveedor" id="proveedor" class="form-control">
+                                    @foreach($proveedores as $proveedor)
+                                        <option value="{{$proveedor->id_proveedor}}">{{$proveedor->nombre_proveedor}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Continuar</button>
                         </form>
@@ -47,15 +41,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function doalert(checkboxElem,id_campo) {
-            var campo = document.getElementById(id_campo);
-            if (checkboxElem.checked) {
-                campo.disabled=true;
-            } else {
-                campo.disabled=false;
-            }
-        }
-    </script>
 @endsection

@@ -18,7 +18,11 @@
                             <div class="card">
                                 <div class="card-header">Documentos</div>
                                 <div class="card-body">
-
+                                    <ul class="list-group list-group-flush">
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Documento/create">Nuevo Documento</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Documento/">Listar Documentos</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Documento/buscar">Buscar Documentos</a>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -26,7 +30,11 @@
                             <div class="card">
                                 <div class="card-header">Pagos</div>
                                 <div class="card-body">
-
+                                    <ul class="list-group list-group-flush">
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Pago/proveedor">Nuevo Pago</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Pago/">Lista Pagos</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Pago/buscar">Buscar Pagos</a>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +45,11 @@
                             <div class="card">
                                 <div class="card-header">Estadisticas</div>
                                 <div class="card-body">
-
+                                    <ul class="list-group list-group-flush">
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Grafico/pagos_cuentas">Pagos por Cuenta</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Grafico/seleccionar">Pagos a Proveedor</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Grafico/pagos_categoria">Pagos por Categoria</a>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +57,15 @@
                             <div class="card">
                                 <div class="card-header">Otros</div>
                                 <div class="card-body">
-
+                                    <ul class="list-group list-group-flush">
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Categoria">Listar Categorias</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/MedioPago">Listar Medios de pago</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Compra">Listar Compras</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/TipoDocumento">Listar Tipos de Documento</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Cuenta">Listar Cuenta</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Proveedores/create">Nuevo Proveedor</a>
+                                        <a class="dropdown-item" href="/Adquisiciones/public/Proveedores/">Listado de Proveedores</a>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

@@ -59,10 +59,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="cuenta">Cuenta:</label>
-                                        <select class="form-control" name="cuenta">
-                                            <option>Scotibank 1</option>
-                                            <option>Scotibank 2</option>
-                                            <option>Placeholder</option>
+                                        <select name="cuenta" id="cuenta" class="form-control">
+                                            @foreach($cuentas as $cuenta)
+                                                <option value="{{$cuenta->id_cuenta}}">{{$cuenta->nombre_cuenta}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

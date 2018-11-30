@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Cuenta;
 use App\MedioPago;
 use App\Proveedores;
 use Illuminate\Http\Request;
 use App\Documento;
 use App\Pago;
+use Illuminate\Support\Facades\DB;
 
 
 class PagoController extends Controller
@@ -16,6 +18,31 @@ class PagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function buscar()
+    {
+        $proveedores = Proveedores::all();
+        return view('pagos.buscar', compact('proveedores'));
+    }
+
+    public function busqueda(Request $request)
+    {
+        $request->validate([
+            'inicio'=>'date',
+            'fin'=>'after_or_equal:inicio'
+        ]);
+
+        $pagos_std = DB::select('SELECT pagos.id_pago
+                                  FROM pagos,documento_pago,documentos,proveedores
+                                  where documentos.proveedor = '.$request->proveedor.' 
+                                  and documentos.id_documento = documento_pago.documento_id_documento 
+                                  and pagos.id_pago = documento_pago.pago_id_pago
+                                  and fecha_pago >='.$request->inicio.' and fecha_pago >='.$request->fin.'
+                                  ORDER BY fecha_pago');
+
+        $pagos_id = json_decode(json_encode($pagos_std), true);
+        $pagos = Pago::find($pagos_id);
+        return view('pagos.index', compact('pagos'));
+    }
 
     public function selecProv()
     {
@@ -52,7 +79,8 @@ class PagoController extends Controller
         $documentos = Documento::with('prov')->find($ids);
         //var_dump($documentos);
         $medio_pagos=MedioPago::all();
-        return view('pagos.create', compact('documentos','medio_pagos'));
+        $cuentas = Cuenta::all();
+        return view('pagos.create', compact('documentos','medio_pagos','cuentas'));
     }
 
     /**
@@ -179,8 +207,16 @@ class PagoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_pago)
+
     {
-        //
+        $pago = pago::find($id_pago);
+        foreach($pago->documentos as $documento) {
+            $documento->monto_restante += $documento->pivot->monto;
+            $documento->monto_pagado -= $documento->pivot->monto;
+            $documento->save();
+        }
+        $pago->delete();
+        return redirect('/Pago')->with('success', 'Pago Anulado');
     }
 }

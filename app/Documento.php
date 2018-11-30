@@ -32,5 +32,11 @@ class Documento extends Model
         return $this->BelongsToMany(Pago::class)->withPivot('monto');
 
     }
+    public function compras(){
+
+        return $this->hasMany(Compra::class,'documento','id_documento');
+
+
+    }
 
 }
