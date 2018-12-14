@@ -18,7 +18,7 @@
                 <tr>
                     <td>Categoria</td>
                     <td>Documento</td>
-                    <td>Detalle Compra</td>
+                   {{-- <td>Detalle Compra</td>--}}
                     <td>Descripcion del gasto</td>
                     <td>Monto del Gasto</td>
                     <td colspan="2">Accion</td>
@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{$compra->categ->nombre_categoria}}</td>
                         <td>{{$compra->docum->numero_documento}}</td>
-                        <td>{{$compra->detalle}}</td>
+                      {{--  <td>{{$compra->detalle}}</td>--}}
                         <td>{{$compra->descripcion_gasto}}</td>
                         <td>{{$compra->monto_gasto}}</td>
                         <td><a href="{{ route('Compra.edit',$compra->id_compra)}}" class="btn btn-primary">Editar</a></td>

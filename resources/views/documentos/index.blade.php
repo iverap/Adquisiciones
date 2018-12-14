@@ -17,7 +17,7 @@
         <table id="tabla" class="table table-striped">
             <thead>
                 <tr>
-                    <td>Numero</td>
+                    <td>Numero Doc</td>
                     <td>Proveedor</td>
                     <td>Fecha de Documento</td>
                     <td>Fecha de Vencimiento</td>

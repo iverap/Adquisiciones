@@ -41,9 +41,9 @@ class CuentaController extends Controller
     public function store(Request $request)
     {
         //
-        //$request->validate([
-        //    'nombre_categoria'=>'required|varchar|max:255'
-       // ]);
+        $request->validate([
+            'nombre_cuenta'=>'required|varchar|max:200'
+        ]);
         $cuenta = new Cuenta([
             'nombre_cuenta' => $request->get('nombre_cuenta')
         ]);

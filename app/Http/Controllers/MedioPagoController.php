@@ -48,6 +48,9 @@ class MedioPagoController extends Controller
     public function store(Request $request)
     {
         //'medio', 'banco', 'nro_cuenta', 'nro_transaccion'
+        $request->validate([
+            'medio'=>'required|varchar|max:200'
+        ]);
         $mediopago = new MedioPago([
             'medio' => $request->get('medio')
         ]);

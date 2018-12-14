@@ -41,10 +41,9 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //$request->validate([
-        //    'nombre_categoria'=>'required|varchar|max:255'
-       // ]);
+        $request->validate([
+           'nombre_categoria'=>'required|varchar|max:200'
+        ]);
         $categoria = new Categoria([
             'nombre_categoria' => $request->get('nombre_categoria')
         ]);

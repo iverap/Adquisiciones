@@ -47,12 +47,10 @@
                 <div class="form-group">
                     <label for="tipo">Tipo:</label>
                     <select class="form-control" name="tipo" >
-                        <option value="{{$documento->tipo}}" selected=selected >{{$documento->tipo}}</option>
-                        <option>FACEX</option>
-                        <option>FACEL</option>
-                        <option>BOL</option>
-                        <option>BOLEC</option>
-                        <option>ODE</option>
+                        <option value="{{$documento->tipo}}" selected=selected >{{$documento->tipodoc->nombre_tipodoc}}</option>
+                        @foreach($tiposdoc as $tipodoc)
+                            <option value="{{$tipodoc->id_tipodoc}}">{{$tipodoc->nombre_tipodoc}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">

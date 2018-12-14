@@ -11,6 +11,13 @@
             <div class="col-md-1">
             </div>
             <div class="col-md-10">
+                @if(isset($repetido))
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{{ 'El numero de documento ya existe para este proveedor' }}</li>
+                        </ul>
+                    </div><br />
+                @endif
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -34,11 +41,11 @@
                                         <input type="text" class="form-control" name="numero_documento"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="quantity">Fecha de Vencimiento:</label>
+                                        <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
                                         <input type="date" class="form-control" name="fecha_vencimiento"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="quantity">Documento Original:</label>
+                                        <label for="documento_original">Documento Original:</label>
                                         <input type="file" class="form-control" name="documento_original"/>
                                     </div>
                                 </div>
@@ -62,12 +69,12 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="quantity">Fecha Del Documento:</label>
+                                        <label for="fecha_documento">Fecha Del Documento:</label>
                                         <input type="date" class="form-control" name="fecha_documento"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="quantity">Monto del Documento:</label>
-                                        <input type="text" class="form-control" name="monto_documento"/>
+                                        <label for="monto_documento">Monto del Documento:</label>
+                                        <input type="number" class="form-control" value="0" min="0" name="monto_documento"/>
                                     </div>
                                 </div>
                             </div>
@@ -80,13 +87,14 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-4">
+                                {{--<div class="form-group col-4">
                                     <label for="detalle">Detalle:</label>
                                     <textarea id="detalle" class="form-control" rows="4" name="detalle"></textarea>
-                                </div>
+                                </div>--}}
                                 <div class="form-group col-4">
-                                    <label for="name">Descripcion Gasto:</label>
-                                    <input type="text" class="form-control" name="descripcion_gasto"/>
+                                    <label for="descripcion_gasto">Descripcion Gasto:</label>
+                                    {{--<input type="text" class="form-control" name="descripcion_gasto"/>--}}
+                                    <textarea id="descripcion_gasto" class="form-control" rows="4" name="descripcion_gasto"></textarea>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Agregar</button>

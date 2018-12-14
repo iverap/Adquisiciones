@@ -43,12 +43,16 @@ class ProveedoresController extends Controller
     {
         //
         $request->validate([
-            'nombre_proveedor'=>'required',
-            'rut_proveedor' => 'required'
+            'nombre_proveedor'=>'required|max:49',
+            'rut_proveedor' => 'required|max:49',
+            'nro_cuenta' => 'nullable|max:49',
+            'banco' => 'nullable|max:49'
         ]);
         $proveedor = new Proveedores([
             'nombre_proveedor' => $request->get('nombre_proveedor'),
-            'rut_proveedor'=> $request->get('rut_proveedor')
+            'rut_proveedor'=> $request->get('rut_proveedor'),
+            'nro_cuenta'=> $request->get('nro_cuenta'),
+            'banco'=> $request->get('banco')
         ]);
         $proveedor->save();
         return redirect('/Proveedores')->with('success', 'Proveedor Agregado');
@@ -90,13 +94,17 @@ class ProveedoresController extends Controller
     {
         //
         $request->validate([
-            'nombre_proveedor'=>'required',
-            'rut_proveedor' => 'required'
+            'nombre_proveedor'=>'required|max:49',
+            'rut_proveedor' => 'required|max:49',
+            'nro_cuenta' => 'nullable|max:49',
+            'banco' => 'nullable|max:49'
         ]);
 
         $proveedor = Proveedores::find($id_proveedor);
         $proveedor->nombre_proveedor = $request->get('nombre_proveedor');
         $proveedor->rut_proveedor = $request->get('rut_proveedor');
+        $proveedor->nro_cuenta = $request->get('nro_cuenta');
+        $proveedor->banco = $request->get('banco');
         $proveedor->save();
 
         return redirect('/Proveedores')->with('success', 'Proveedor actualizado');

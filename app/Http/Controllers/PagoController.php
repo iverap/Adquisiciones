@@ -71,7 +71,7 @@ class PagoController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function pagar(Request $request)
+    public function pagar(Request $request) //create
     {
         //var_dump($request->datos);
         $ids = json_decode($request->datos);
@@ -88,7 +88,7 @@ class PagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() //not used
     {
         $documentos = Documento::all();
 
@@ -216,6 +216,7 @@ class PagoController extends Controller
             $documento->monto_pagado -= $documento->pivot->monto;
             $documento->save();
         }
+        $pago->documentos->detach();
         $pago->delete();
         return redirect('/Pago')->with('success', 'Pago Anulado');
     }

@@ -40,9 +40,9 @@ class TipoDocController extends Controller
     public function store(Request $request)
     {
         //
-      //  $request->validate([
-      //      'nombre_tipodoc'=>'required|varchar|max:255'
-      //  ]);
+        $request->validate([
+            'nombre_tipodoc'=>'required|varchar|max:200'
+        ]);
         $tipodoc = new TipoDocumento([
             'nombre_tipodoc' => $request->get('nombre_tipodoc')
         ]);

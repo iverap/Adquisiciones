@@ -35,6 +35,32 @@
                                 <label for="quantity">Rut:</label>
                                 <input type="text" class="form-control" name="rut_proveedor"/>
                             </div>
+                            <div class="form-group">
+                                <label for="quantity">Numero de Cuenta:</label>
+                                <input type="text" class="form-control" name="nro_cuenta"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="banco">Banco:</label>
+                                <select name="banco" id="banco" class="form-control">
+                                    <option>Santander</option>
+                                    <option>Banco Estado</option>
+                                    <option>Banco de Chile</option>
+                                    <option>BCI</option>
+                                    <option>BBVA</option>
+                                    <option>Scotibank</option>
+                                    <option>CORP-BANCA</option>
+                                    <option>BICE</option>
+                                    <option>Banco ITAU</option>
+                                    <option>Banco Security</option>
+                                    <option>Banco Falabella</option>
+                                    <option>Banco Ripley</option>
+                                    <option>Banco Consorcio</option>
+                                    <option>Banco Paris</option>
+                                    <option>COOPEUCH</option>
+                                    <option>MUFG BANK LTD</option>
+                                    <option>HSBC BANK Chile</option>
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">Agregar</button>
                         </form>
                     </div>

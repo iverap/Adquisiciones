@@ -41,11 +41,11 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             @csrf
                             <label for="name">Detalle:</label>
                             <input type="text" class="form-control" name="detalle"/>
-                        </div>
+                        </div>--}}
                         <div class="form-group">
                             @csrf
                             <label for="name">Descripcion Gasto:</label>

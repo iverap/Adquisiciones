@@ -87,10 +87,22 @@ class DocumentoController extends Controller
             'fecha_documento'=>'required|date',
             'fecha_vencimiento'=>'required|date|after_or_equal:fecha_documento',
             'tipo'=>'required',
-            'monto_documento'=>'required|integer',
-            'documento_original'=>'image|nullable|max:1999',
+            'monto_documento'=>'required|integer|',
+            'documento_original'=>'image|nullable|max:3000',
             'categoria'=>'required',
         ]);
+
+       $prov = Proveedores::find($request->proveedor);
+       $documentos = $prov->documentos;
+       foreach ($documentos as $doc){
+           if ($doc->numero_documento == $request->numero_documento) {
+               $repetido = true;
+               $proveedores = Proveedores::all();
+               $categorias = Categoria::all();
+               $tiposdoc = TipoDocumento::all();
+               return view('documentos.create', compact('repetido','proveedores','categorias','tiposdoc'));
+           }
+       }
 
         if ($request->hasFile('documento_original')){
             $extension = $request->file('documento_original')->getClientOriginalExtension();
@@ -116,7 +128,7 @@ class DocumentoController extends Controller
         $compra = new Compra([
             'categoria' => $request->get('categoria'),
             'documento'=> $documento->id_documento,
-            'detalle'=> $request->get('detalle'),
+            //'detalle'=> $request->get('detalle'),
             'descripcion_gasto'=> $request->get('descripcion_gasto'),
             'monto_gasto'=> $documento->monto_documento,
         ]);
@@ -148,10 +160,11 @@ class DocumentoController extends Controller
     public function edit($id_documento)
     {
         //$documento = Documento::find($id_documento);
-        $documento = Documento::with('prov')->find($id_documento);
+        $documento = Documento::with(['prov','tipodoc'])->find($id_documento);
         //$documento = Documento::with('prov')->find($id_documento);
         $proveedores = Proveedores::all();
-        return view('documentos.edit', compact('documento','proveedores'));
+        $tiposdoc = TipoDocumento::all();
+        return view('documentos.edit', compact('documento','proveedores','tiposdoc'));
     }
 
     /**
@@ -203,10 +216,29 @@ class DocumentoController extends Controller
      */
     public function destroy($id_documento)
     {
-        $documento = Documento::find($id_documento);
-        $documento->delete();
+        $documento = Documento::with('pagos')->find($id_documento);
         $compra = Compra::where('documento',$id_documento);
+        $pagos = $documento->pagos;
+       //echo '<pre>' , var_dump($pagos) , '</pre>';
+        if (count($pagos)){
+            foreach ($pagos as $pago){
+                    $pago->monto -= $pago->pivot->monto;
+                    $pago->save();
+            }
+        }
+        $documento->pagos()->detach();
+        $documento->delete();
         $compra->delete();
+        if ($pagos){
+            foreach ($pagos as $pago){
+                //echo '<pre>' , var_dump($pago->documentos) , '</pre>';
+                //echo '<pre>' , var_dump(count($pago->documentos)) , '</pre>';
+                if(!count($pago->documentos)){
+                    $pago->delete();
+                }
+            }
+        }
+
         return redirect('/Documento')->with('success', 'Documento Anulado');
     }
 }

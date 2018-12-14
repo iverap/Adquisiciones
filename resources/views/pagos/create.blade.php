@@ -31,14 +31,15 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        @csrf
                                         <label for="banco">Banco:</label>
                                         <select name="banco" id="banco" class="form-control">
+                                            <option value="{{$documentos[0]->prov->banco}}" selected=selected >{{$documentos[0]->prov->banco}}</option>
                                             <option>Santander</option>
                                             <option>Banco Estado</option>
                                             <option>Banco de Chile</option>
                                             <option>BCI</option>
                                             <option>BBVA</option>
+                                            <option>Scotibank</option>
                                             <option>CORP-BANCA</option>
                                             <option>BICE</option>
                                             <option>Banco ITAU</option>
@@ -82,7 +83,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="nro_cuenta">Numero de cuenta:</label>
-                                        <input type="text" class="form-control" name="nro_cuenta"/>
+                                        <input type="text" class="form-control" name="nro_cuenta" value="{{ $documentos[0]->prov->nro_cuenta }}"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="nro_transaccion">Numero de Transaccion:</label>

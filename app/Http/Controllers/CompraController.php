@@ -57,12 +57,13 @@ class CompraController extends Controller
             'categoria'=>'required',
             'documento' => 'required',
             'monto_gasto'=>'required|integer',
+            'descripcion_gasto'=>'max:100'
         ]);
 
         $compra = new Compra([
             'categoria' => $request->get('categoria'),
             'documento'=> $request->get('documento'),
-            'detalle'=> $request->get('detalle'),
+            //'detalle'=> $request->get('detalle'),
             'descripcion_gasto'=> $request->get('descripcion_gasto'),
             'monto_gasto'=> $request->get('monto_gasto')
         ]);
@@ -113,7 +114,7 @@ class CompraController extends Controller
         $compra = Compra::find($id_compra);
         $compra->categoria = $request->get('categoria');
         $compra->documento = $request->get('documento');
-        $compra->detalle = $request->get('detalle');
+        //$compra->detalle = $request->get('detalle');
         $compra->descripcion_gasto = $request->get('descripcion_gasto');
         $compra->save();
 

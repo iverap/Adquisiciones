@@ -41,10 +41,10 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                {{--<div class="form-group">
                     <label for="name">Detalle:</label>
                     <input type="text" class="form-control" name="detalle" value="{{ $compra->detalle }}"/>
-                </div>
+                </div>--}}
                 <div class="form-group">
                     <label for="name">Descripcion Gasto:</label>
                     <input type="text" class="form-control" name="descripcion_gasto" value="{{ $compra->descripcion_gasto }}"/>
